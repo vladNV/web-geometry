@@ -42,8 +42,8 @@ public class GeometryPatternController {
 
     @PostMapping()
     public String addConstructedObject(@Valid @RequestBody GeometryPattern geometryPattern, Model model) {
-        GeometryPattern createdGeometryPattern = geometryPatternRepository.save(geometryPattern);
-        model.addAttribute("geometryPattern", createdGeometryPattern);
+        GeometryPattern createdFigure = geometryPatternRepository.save(geometryPattern);
+        model.addAttribute("figure", createdFigure);
 
         return "figures";
     }
