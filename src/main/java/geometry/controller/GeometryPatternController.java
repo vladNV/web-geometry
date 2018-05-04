@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/figures")
+@RequestMapping("/geometry_pattern")
 public class GeometryPatternController {
 
     private final GeometryPatternRepository geometryPatternRepository;
@@ -22,12 +22,17 @@ public class GeometryPatternController {
         this.geometryPatternRepository = geometryPatternRepository;
     }
 
+    @ModelAttribute("geometry_pattern")
+    public GeometryPattern getGeometryPatternObject() {
+        return new GeometryPattern();
+    }
+
     @GetMapping()
     public String getAllFigures(Model model) {
         List<GeometryPattern> figures = geometryPatternRepository.findAll();
-        model.addAttribute("figures", figures);
+        model.addAttribute("geometry_patterns", figures);
 
-        return "figures";
+        return "geometry_pattern";
     }
 
     @GetMapping("/{id}")
@@ -35,17 +40,17 @@ public class GeometryPatternController {
         Optional<GeometryPattern> figure = geometryPatternRepository.findById(id);
         if(figure.isPresent()){
             model.addAttribute("figure", figure);
-            return "figures/" + figure.get().getId();
+            return "geometry_pattern/" + figure.get().getId();
         }
-        return "figures";
+        return "geometry_pattern";
     }
 
     @PostMapping()
-    public String addConstructedObject(@Valid @RequestBody GeometryPattern geometryPattern, Model model) {
-        GeometryPattern createdFigure = geometryPatternRepository.save(geometryPattern);
-        model.addAttribute("figure", createdFigure);
+    public String addConstructedObject(@ModelAttribute("geometry_pattern") GeometryPattern geometryPattern, Model model) {
+        GeometryPattern createdGeometryPattern = geometryPatternRepository.save(geometryPattern);
+        model.addAttribute("geometry_pattern", createdGeometryPattern);
 
-        return "figures";
+        return "geometry_pattern";
     }
 
     @DeleteMapping("/{id}")
@@ -55,6 +60,6 @@ public class GeometryPatternController {
 
         geometryPattern.ifPresent(geometryPatternRepository::delete);
 
-        return "figures";
+        return "geometry_pattern";
     }
 }

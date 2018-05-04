@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+<form action="#" th:action="@{/geometry_pattern}" th:object="${geometry_pattern}" method="post">
+    <p>Id:
+        <input type="text" th:field="*{jsonValue}"/>
+    </p>
+    <p><input type="submit" value="Submit"/>
+</form>
+Hello world
+</body>
+</html>
