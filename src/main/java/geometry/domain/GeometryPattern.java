@@ -21,21 +21,21 @@ public class GeometryPattern {
     @Getter @Setter
     @Column
     private String jsonValue;
-//
-//    @Getter @Setter
-//    @Column
-//    private LocalDateTime createdDate;
-//
-//    @Getter @Setter
-//    @Column
-//    private String title;
-//
-//    @Getter @Setter
-//    @Column
-//    private String description;
-//
-//    @Getter @Setter
-//    @ManyToOne
-//    @JoinColumn(name = "client_id", nullable = false)
-//    private Client client;
+
+    @Getter @Setter
+    @Column
+    private LocalDateTime createdDate;
+
+    @Getter @Setter
+    @Column
+    private String title;
+
+    @Getter @Setter
+    @Column
+    private String description;
+
+    @Getter @Setter
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 }

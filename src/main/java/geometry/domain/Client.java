@@ -38,8 +38,8 @@ public class Client {
     @Getter @Setter
     @Column
     private String role;
-//
-//    @Getter @Setter
-//    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
-//    private Set<GeometryPattern> patterns = new HashSet<>();
+
+    @Getter @Setter
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    private Set<GeometryPattern> patterns = new HashSet<>();
 }
