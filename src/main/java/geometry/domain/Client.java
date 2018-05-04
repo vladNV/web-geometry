@@ -25,19 +25,19 @@ public class Client {
 
     @Getter @Setter
     @Column
-    private String email;
-
-    @Getter @Setter
-    @Column
-    private String role;
-
-    @Getter @Setter
-    @Column
     private String password;
 
     @Getter @Setter
     @Column
+    private String email;
+
+    @Getter @Setter
+    @Column
     private Long phone;
+
+    @Getter @Setter
+    @Column
+    private String role;
 //
 //    @Getter @Setter
 //    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)

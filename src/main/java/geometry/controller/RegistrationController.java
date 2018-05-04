@@ -1,17 +1,16 @@
 package geometry.controller;
 
 import geometry.domain.Client;
+import geometry.domain.GeometryPattern;
 import geometry.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("register")
+@RequestMapping("/registration")
 public class RegistrationController {
 
     private final RegistrationService registrationService;
@@ -21,9 +20,21 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
+    @ModelAttribute("client")
+    public Client getClientObject() {
+        return new Client();
+    }
+
+    @GetMapping
+    public String toRegistrationPage() {
+        return "registration";
+    }
+
+
     @PostMapping
-    public String register(@Valid @RequestBody Client client) {
+    public String register(@ModelAttribute("client") Client client) {
+        client.setRole("user");
         Client registered = registrationService.register(client);
-        return client == null ? "register" : "login";
+        return registered == null ? "registration" : "login";
     }
 }
