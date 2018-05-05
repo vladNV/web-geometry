@@ -4,45 +4,101 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap-reboot.min.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="js.constructor/shape.css">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reboot.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-grid.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/constructor/shape.css}">
     <title>Main page</title>
 </head>
 <body>
-    <div class="col-sm-12">
-        <div class="col-sm-3">
-            <div class="btn-group">
-                <button class="btn btn-primary" onclick="switchAction('point')">
-                    Point
+<div class="cont">
+    <div class="row">
+        <!--<div id="polygon_but" style="display: none;">-->
+        <!--<input class="form-control" id="polygon_vertex" style="width:50px;"/>-->
+        <!--<button id="polygon_accept" class="btn btn-success">Принять</button>-->
+        <!--<button id="polygon_cancel" class="btn btn-danger">Отмена</button>-->
+        <!--</div>-->
+        <div class="col-2">
+            <div class="btn-group-vertical" style="width: 100%;">
+                <button class="btn btn-primary" id="point" onclick="switchAction('point')">
+                    Точка
                 </button>
-                <button class="btn btn-primary" onclick="switchAction('line')">
-                    Line
+                <button class="btn btn-primary" id="line" onclick="switchAction('line')">
+                    Прямая
                 </button>
-                <button class="btn btn-primary" onclick="switchAction('manycorners')">
-                    Manycorners
+                <button class="btn btn-primary" id="polygon" onclick="switchAction('polygon')">
+                    Многоугольник
                 </button>
-                <button class="btn btn-primary" onclick="switchAction('circle')">
-                    Circle
+                <button class="btn btn-primary" id="circle" onclick="switchAction('circle')">
+                    Окружность
                 </button>
-                <button class="btn btn-primary" onclick="switchAction('corner')">
-                    Corner
+                <button class="btn btn-primary" id="corner" onclick="switchAction('corner')">
+                    Угол
                 </button>
-                <button class="btn btn-primary" onclick="switchAction('arrow')">
-                    Arrow
+                <!--<button class="btn btn-primary" id="arrow" onclick="switchAction('arrow')">-->
+                <!--Стрелка-->
+                <!--</button>-->
+                <hr>
+                <button class="btn btn-primary" id="average" onclick="switchAction('average')">
+                    Середина
                 </button>
-                <button class="btn btn-primary" onclick="switchAction('trigonometry')">
-                    Trigonometry
+                <button class="btn btn-primary" id="perpendicular" onclick="switchAction('perpendicular')">
+                    Перпендикуляр
+                </button>
+                <button class="btn btn-primary" id="parallel" onclick="switchAction('parallel')">
+                    Параллель
+                </button>
+                <button class="btn btn-primary" id="bissec" onclick="switchAction('bissec')">
+                    Биссектриса
+                </button>
+                <hr>
+                <!--<button class="btn btn-primary" id="symmetry_line" onclick="switchAction('symmetry-line')">-->
+                <!--Симметрия прямая-->
+                <!--</button>-->
+                <!--<button class="btn btn-primary" id="symmetry_point" onclick="switchAction('symmetry-point')">-->
+                <!--Симметрия точка-->
+                <!--</button>-->
+                <!--<hr>-->
+                <button class="btn btn-success" onclick="showPaint()">
+                    Лист
+                </button>
+                <button class="btn btn-success" onclick="showGraph()">
+                    График
+                </button>
+                <button class="btn btn-success" onclick="showTrigonometry()">
+                    Тригонометрия
+                </button>
+                <hr>
+                <button class="btn btn-danger" id="revert" onclick="revert()">
+                    Откатить
+                </button>
+                <button class="btn btn-danger" id="reset" onclick="resetAll()">
+                    Очистить
                 </button>
             </div>
         </div>
-        <div id="paint" class="col-sm-9" onclick="doSomething()">
-
+        <div id="paint" class="col-10" onclick="doSomething()">
+        </div>
+        <div id="trigonometry" class="col-10" style="display: none;">
+        </div>
+        <div id="graph" class="col-10" style="display: none;">
+            <div class="col-2">
+                <label for="func">f(x): </label><input id="func" class="form-control" required />
+                <label for="from">from: </label><input id="from" class="form-control" required />
+                <label for="to">to: </label><input id="to" class="form-control" required/>
+                <hr>
+                <button class="btn btn-success" onclick="drawFunc()">Draw</button>
+            </div>
         </div>
     </div>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="js.constructor/menu.js"></script>
+</div>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/constructor/menu.js}"></script>
+<script th:src="@{/constructor/controller.js}"></script>
+<script th:src="@{/constructor/graph.js}"></script>
+<script th:src="@{/constructor/trigonometry.js}"></script>
+<script th:src="@{/constructor/ploty.min.js}"></script>
 </body>
 </html>

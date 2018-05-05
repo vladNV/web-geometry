@@ -1,0 +1,17 @@
+.cont {
+    padding: 60px;
+    margin: 0;
+}
+
+.point {
+    width: 8px;
+    height: 8px;
+    border-radius: 30px;
+    background: black;
+    position: absolute;
+}
+
+#paint {
+    height: 700px;
+    background: gainsboro;
+}
