@@ -27,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Client user = clientRepository.findByLogin(username);
         if (user == null) {
-            throw new UsernameNotFoundException("Invalid login or password");
+            throw new UsernameNotFoundException("Invalid login");
         }
         Set<GrantedAuthority> set = Collections.singleton(new SimpleGrantedAuthority(user.getRole()));
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), set);
