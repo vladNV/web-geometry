@@ -1,14 +1,14 @@
 package geometry.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/constructor")
 public class ConstructorController {
 
-    @GetMapping("/constructor")
+    @GetMapping()
     public String constructorPage() {
         return "constructor";
     }
-
 }

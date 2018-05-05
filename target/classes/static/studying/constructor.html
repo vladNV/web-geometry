@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <!--<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">-->
+    <!--<link th:href="@{/css/bootstrap-reboot.min.css}" rel="stylesheet">-->
+    <!--<link th:href="@{/css/bootstrap-grid.min.css}" rel="stylesheet">-->
+    <!--<link rel="stylesheet" th:href="@{/constructor/shape.css}">-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-reboot.min.css" rel="stylesheet">
+    <link href="shape.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
+    <title>Main page</title>
+</head>
+<body>
+<div class="cont">
+    <div class="row">
+        <div class="col-2">
+            <div class="btn-group-vertical" style="width: 100%;">
+                <button class="btn btn-primary" id="point" onclick="switchAction('point')">
+                    Точка
+                </button>
+                <button class="btn btn-primary" id="line" onclick="switchAction('line')">
+                    Прямая
+                </button>
+                <button class="btn btn-primary" id="polygon" onclick="switchAction('polygon')">
+                    Многоугольник
+                </button>
+                <button class="btn btn-primary" id="circle" onclick="switchAction('circle')">
+                    Окружность
+                </button>
+                <button class="btn btn-primary" id="corner" onclick="switchAction('corner')">
+                    Угол
+                </button>
+                <button class="btn btn-primary" id="arrow" onclick="switchAction('arrow')">
+                    Стрелка
+                </button>
+                <button class="btn btn-primary" id="trigonometry" onclick="switchAction('trigonometry')">
+                    Тригонометрия
+                </button>
+                <hr>
+                <button class="btn btn-primary" id="average" onclick="switchAction('average')">
+                    Середина
+                </button>
+                <button class="btn btn-primary" id="perpendicular" onclick="switchAction('perpendicular')">
+                    Перпендикуляр
+                </button>
+                <button class="btn btn-primary" id="parallel" onclick="switchAction('parallel')">
+                    Параллель
+                </button>
+                <button class="btn btn-primary" id="bissec" onclick="switchAction('bissec')">
+                    Биссектриса
+                </button>
+                <hr>
+                <button class="btn btn-primary" id="symmetry_line" onclick="switchAction('symmetry-line')">
+                    Симметрия прямая
+                </button>
+                <button class="btn btn-primary" id="symmetry_point" onclick="switchAction('symmetry-point')">
+                    Симметрия точка
+                </button>
+                <hr>
+                <button class="btn btn-primary" id="graph" onclick="switchAction('graph')">
+                    График
+                </button>
+                <hr>
+                <button class="btn btn-danger" id="revert" onclick="revert()">
+                    Откатить
+                </button>
+                <button class="btn btn-danger" id="reset" onclick="resetAll()">
+                    Очистить
+                </button>
+            </div>
+        </div>
+        <div id="paint" class="col-10" onclick="doSomething()">
+        </div>
+        <div id="trigonometry_circle" class="" style="display: none;">
+        </div>
+        <div id="coordinate" class="" style="display: none;">
+
+        </div>
+    </div>
+</div>
+
+    <!--<script th:src="@{/js/bootstrap.min.js}"></script>-->
+    <!--<script th:src="@{/js/bootstrap.bundle.min.js}"></script>-->
+    <!--<script th:src="@{/constructor/menu.js}"></script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="menu.js"></script>
+</body>
+</html>
