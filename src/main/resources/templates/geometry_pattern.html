@@ -3,14 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Form</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body>
-<form action="#" th:action="@{/geometry_pattern}" th:object="${geometry_pattern}" method="post">
-    <p>Id:
-        <input type="text" th:field="*{jsonValue}"/>
-    </p>
-    <p><input type="submit" value="Submit"/>
-</form>
-Hello world
+<!--<form action="#" th:action="@{/geometry_pattern}" th:object="${geometry_pattern}" method="post">-->
+    <!--<p>Id:-->
+        <!--<input type="text" th:field="*{jsonValue}"/>-->
+    <!--</p>-->
+    <!--<p><input type="submit" value="Submit"/>-->
+<!--</form>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form action="@{/geometry_pattern}" method="post" modelAttribute="geometry_pattern">
+                    <div class="form-group">
+                        <label>Название
+                            <input required class="form-control" width="100%"
+                                   id="title" name="title"/>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Описание
+                            <input required class="form-control" width="100%"
+                                   id="description" name="description"/>
+                        </label>
+                    </div>
+                    <input type="hidden" id="json_value" name="json_value">
+                    <button class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

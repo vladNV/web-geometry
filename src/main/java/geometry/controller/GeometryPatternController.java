@@ -46,10 +46,11 @@ public class GeometryPatternController {
     }
 
     @PostMapping()
-    public String addConstructedObject(@ModelAttribute("geometry_pattern") GeometryPattern geometryPattern, Model model) {
+    public String addConstructedObject(@ModelAttribute("geometry_pattern")
+                                                   GeometryPattern geometryPattern, Model model) {
+        System.out.println(geometryPattern);
         GeometryPattern createdGeometryPattern = geometryPatternRepository.save(geometryPattern);
         model.addAttribute("geometry_pattern", createdGeometryPattern);
-
         return "geometry_pattern";
     }
 

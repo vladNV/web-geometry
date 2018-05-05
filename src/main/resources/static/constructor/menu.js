@@ -64,10 +64,10 @@ function lock(val) {
 
 
 function doSomething(e) {
-    if (e === null || e === undefined) return;
+    if (e === null || e === undefined || e.path[0].id !== 'paint') return;
     pageX = e.clientX - paint.offsetLeft;
     pageY = e.clientY - paint.offsetTop;
-    if (skip) {skip = false; return;}
+    // if (skip) {skip = false; return;}
     controller();
     function controller() {
         switch(action) {
@@ -209,8 +209,13 @@ function revert() {
 
 function resetAll() {
     action = 'none';
+    if (shapes.length === 0) {
+        return;
+    }
     shapes.forEach(function (t) {
-        document.getElementById(t.id).remove();
+        if ( document.getElementById(t.id) !== null &&  document.getElementById(t.id) !== undefined) {
+            document.getElementById(t.id).remove();
+        }
     });
     shapes = [];
 }
@@ -424,4 +429,12 @@ var shapes = [];
 
 function Shape(id, type) {
     return {id:id, type:type}
+}
+
+function insert() {
+    // document.removeEventListener('click', doSomething);
+    // document.removeEventListener('click', circle.onclick);
+    let HTML = document.getElementById('paint').innerHTML;
+    let input = document.getElementById('json_value');
+    input.value = HTML;
 }
