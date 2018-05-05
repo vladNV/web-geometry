@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,8 @@ public class GeometryPatternController {
 
     @PostMapping()
     public String addConstructedObject(@ModelAttribute("geometry_pattern") GeometryPattern geometryPattern, Model model) {
+        geometryPattern.setCreatedDate(LocalDateTime.now());
+
         GeometryPattern createdGeometryPattern = geometryPatternRepository.save(geometryPattern);
         model.addAttribute("geometry_pattern", createdGeometryPattern);
 
