@@ -32,13 +32,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/home").permitAll()
                     .antMatchers("/login").anonymous()
-                    .antMatchers("/geometry_pattern/**").hasRole("user")
+                    .antMatchers("/", "/home").permitAll()
+                    .antMatchers("/geometry_pattern/**").hasRole("USER")
                     .and()
                 .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/constructor")
+                    .defaultSuccessUrl("/geometry_pattern")
                     .and()
                 .logout()
                     .permitAll();

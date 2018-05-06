@@ -9,7 +9,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@ToString @EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "id")
+@ToString(of = {"id","title","createdDate"})
 @Table(name = "geometry_pattern")
 public class GeometryPattern {
 
@@ -35,7 +36,7 @@ public class GeometryPattern {
     private String description;
 
     @Getter @Setter
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 }

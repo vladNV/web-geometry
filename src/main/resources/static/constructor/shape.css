@@ -1,3 +1,7 @@
+html, body{
+    overflow-y:hidden;
+}
+
 .cont {
     padding: 60px;
     margin: 0;
@@ -13,5 +17,5 @@
 
 #paint {
     height: 700px;
-    background: gainsboro;
+    background: #EEE8AA;
 }

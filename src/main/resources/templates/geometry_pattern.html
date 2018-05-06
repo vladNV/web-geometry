@@ -1,38 +1,175 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Form</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reboot.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-grid.min.css}" rel="stylesheet">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/constructor/shape.css}">
+    <title>Main page</title>
 </head>
 <body>
-<!--<form action="#" th:action="@{/geometry_pattern}" th:object="${geometry_pattern}" method="post">-->
-    <!--<p>Id:-->
-        <!--<input type="text" th:field="*{jsonValue}"/>-->
-    <!--</p>-->
-    <!--<p><input type="submit" value="Submit"/>-->
-<!--</form>-->
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <form action="@{/geometry_pattern}" method="post" modelAttribute="geometry_pattern">
+<div class="cont">
+    <div class="row">
+        <!--<div id="polygon_but" style="display: none;">-->
+        <!--<input class="form-control" id="polygon_vertex" style="width:50px;"/>-->
+        <!--<button id="polygon_accept" class="btn btn-success">Принять</button>-->
+        <!--<button id="polygon_cancel" class="btn btn-danger">Отмена</button>-->
+        <!--</div>-->
+        <span th:if="${saved}">
+            Данные сохранены
+        </span>
+        <div class="col-2">
+            <div class="btn-group-vertical" style="width: 100%;">
+                <button class="btn btn-primary" id="point" onclick="switchAction('point')">
+                    Точка
+                </button>
+                <button class="btn btn-primary" id="line" onclick="switchAction('line')">
+                    Прямая
+                </button>
+                <button class="btn btn-primary" id="polygon" onclick="switchAction('polygon')">
+                    Многоугольник
+                </button>
+                <button class="btn btn-primary" id="circle" onclick="switchAction('circle')">
+                    Окружность
+                </button>
+                <button class="btn btn-primary" id="corner" onclick="switchAction('corner')">
+                    Угол
+                </button>
+                <!--<button class="btn btn-primary" id="arrow" onclick="switchAction('arrow')">-->
+                <!--Стрелка-->
+                <!--</button>-->
+                <button class="btn btn-primary" id="average" onclick="switchAction('average')">
+                    Середина
+                </button>
+                <button class="btn btn-primary" id="perpendicular" onclick="switchAction('perpendicular')">
+                    Перпендикуляр
+                </button>
+                <button class="btn btn-primary" id="parallel" onclick="switchAction('parallel')">
+                    Параллель
+                </button>
+                <button class="btn btn-primary" id="bissec" onclick="switchAction('bissec')">
+                    Биссектриса
+                </button>
+                <!--<button class="btn btn-primary" id="symmetry_line" onclick="switchAction('symmetry-line')">-->
+                <!--Симметрия прямая-->
+                <!--</button>-->
+                <!--<button class="btn btn-primary" id="symmetry_point" onclick="switchAction('symmetry-point')">-->
+                <!--Симметрия точка-->
+                <!--</button>-->
+                <!--<hr>-->
+                <button class="btn btn-success" onclick="showPaint()">
+                    Лист
+                </button>
+                <button class="btn btn-success" onclick="showGraph()">
+                    График
+                </button>
+                <button class="btn btn-success" onclick="showTrigonometry()">
+                    Тригонометрия
+                </button>
+                <button class="btn btn-danger" id="revert" onclick="revert()">
+                    Отменить
+                </button>
+                <button class="btn btn-danger" id="reset" onclick="resetAll()">
+                    Очистить
+                </button>
+                <button class="btn btn-warning" onclick="insert()" data-toggle="modal" data-target="#exampleModal">
+                    Сохранить
+                </button>
+                <button class="btn btn-warning" onclick="loadData()">
+                    Загрузить
+                </button>
+                <hr>
+                <a href="/" class="btn btn-secondary">
+                    На главную
+                </a>
+                <form style="width: 100%;" th:action="@{/logout}" method="post">
+                    <button class="btn btn-secondary">Выйти</button>
+                </form>
+            </div>
+        </div>
+        <div id="paint" class="col-10" th:utext="${figure != null ? figure.jsonValue : ''}"
+             onclick="doSomething()">
+
+        </div>
+        <div id="trigonometry" class="col-10" style="display: none;">
+        </div>
+        <div id="graph" class="col-10" style="display: none;">
+            <div class="col-2">
+                <label for="func">f(x): </label><input id="func" class="form-control" required />
+                <label for="from">from: </label><input id="from" class="form-control" required />
+                <label for="to">to: </label><input id="to" class="form-control" required/>
+                <hr>
+                <button class="btn btn-success" onclick="drawFunc()">Draw</button>
+            </div>
+        </div>
+        <div id="load" class="col-10" style="display: none;">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Created Date</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="f : ${figures}">
+                    <td th:text="${f.id}"></td>
+                    <td th:text="${f.title}"></td>
+                    <td th:text="${f.description}"></td>
+                    <td th:text="${f.createdDate}"></td>
+                    <td><a th:href="@{/geometry_pattern/} + ${f.id}">Load</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/geometry_pattern}" method="post" th:object="${geometry_pattern}">
                     <div class="form-group">
                         <label>Название
                             <input required class="form-control" width="100%"
                                    id="title" name="title"/>
                         </label>
-                    </div>
+                     </div>
                     <div class="form-group">
                         <label>Описание
                             <input required class="form-control" width="100%"
                                    id="description" name="description"/>
                         </label>
                     </div>
-                    <input type="hidden" id="json_value" name="json_value">
+                    <input type="hidden" id="json_value" name="jsonValue">
                     <button class="btn btn-primary">Сохранить</button>
                 </form>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/constructor/menu.js}"></script>
+<script th:src="@{/constructor/controller.js}"></script>
+<script th:src="@{/constructor/graph.js}"></script>
+<script th:src="@{/constructor/trigonometry.js}"></script>
+<script th:src="@{/constructor/ploty.min.js}"></script>
 </body>
 </html>

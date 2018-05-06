@@ -33,7 +33,7 @@ public class RegistrationController {
 
     @PostMapping
     public String register(@ModelAttribute("client") Client client) {
-        client.setRole("user");
+        client.setRole("ROLE_USER");
         Client registered = registrationService.register(client);
         return registered == null ? "registration" : "login";
     }

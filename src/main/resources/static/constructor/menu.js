@@ -209,6 +209,7 @@ function revert() {
 
 function resetAll() {
     action = 'none';
+    paint.innerHTML = '';
     if (shapes.length === 0) {
         return;
     }
@@ -432,8 +433,6 @@ function Shape(id, type) {
 }
 
 function insert() {
-    // document.removeEventListener('click', doSomething);
-    // document.removeEventListener('click', circle.onclick);
     let HTML = document.getElementById('paint').innerHTML;
     let input = document.getElementById('json_value');
     input.value = HTML;

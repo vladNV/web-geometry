@@ -9,8 +9,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@ToString @EqualsAndHashCode(of = "id")
 @Entity
+@ToString (of = {"id", "login"})
+@EqualsAndHashCode(of = "id")
 @Table(name = "client")
 public class Client {
 

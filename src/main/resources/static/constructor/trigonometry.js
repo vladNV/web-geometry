@@ -1,6 +1,7 @@
 var trigonometry = document.getElementById("trigonometry");
 var cos = 0;
 var sin = 0;
+var tg = 0;
 
 let circle = document.createElement('div');
 circle.id = 'euler';
@@ -61,11 +62,11 @@ trigonometry.appendChild(yLine);
 let result = document.createElement('div');
 result.style.left = 600 + 'px';
 result.style.top = 600 + 'px';
-result.innerHTML = '<h3>Cos: ' +  cos + '</h3><br><h3>Sin: ' + sin + '</h3>';
+result.innerHTML = '<h3>Cos: ' +  cos + '</h3><br><h3>Sin: ' + sin + '</h3><br><h3>Tg: ' + tg + '</h3>';
 trigonometry.appendChild(result);
 
 function resreshValues() {
-    result.innerHTML = '<h3>Cos: ' +  cos + '</h3><br><h3>Sin: ' + sin + '</h3>';
+    result.innerHTML = '<h3>Cos: ' +  cos + '</h3><br><h3>Sin: ' + sin + '</h3><br><h3>Tg: ' + tg + '</h3>';
 }
 
 var R = 300;
@@ -98,6 +99,7 @@ function evaluate(x, y) {
     trigonometry.appendChild(line2);
     this.cos = b/c;
     this.sin = a/c;
+    this.tg = a/b;
     resreshValues();
 }
 
