@@ -32,7 +32,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/login").anonymous()
                     .antMatchers("/", "/home").permitAll()
                     .antMatchers("/geometry_pattern/**").hasRole("USER")
                     .and()
@@ -41,12 +40,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/geometry_pattern")
                     .and()
                 .logout()
-                    .permitAll();
+                    .permitAll()
+                    .logoutSuccessUrl("/greeting");
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 

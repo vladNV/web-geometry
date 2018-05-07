@@ -14,13 +14,15 @@ import java.time.LocalDateTime;
 @Table(name = "geometry_pattern")
 public class GeometryPattern {
 
+    private final static int MAX_UTF8_MB4_VARCHAR_LENGTH = 15382;
+
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Getter @Setter
-    @Column
+    @Column(length = MAX_UTF8_MB4_VARCHAR_LENGTH)
     private String jsonValue;
 
     @Getter @Setter

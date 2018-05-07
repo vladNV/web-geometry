@@ -4,8 +4,12 @@ import geometry.domain.Client;
 import geometry.domain.GeometryPattern;
 import geometry.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -26,8 +30,12 @@ public class RegistrationController {
     }
 
     @GetMapping
-    public String toRegistrationPage() {
-        return "registration";
+    public ModelAndView toRegistrationPage() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(!(auth instanceof AnonymousAuthenticationToken)){
+            return new ModelAndView("redirect:/greeting");
+        }
+        return new ModelAndView("registration");
     }
 
 

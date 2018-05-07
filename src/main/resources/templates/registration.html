@@ -11,19 +11,19 @@
 <body>
 <form id="form-registration" action="#" th:action="@{/registration}" th:object="${client}" method="post">
     <div class="container">
-        <label for="login"><b>Login:</b></label>
-        <input id="login" type="text" name="login" placeholder="Enter login:" th:field="*{login}" required>
+        <label for="login"><b>Логин:</b></label>
+        <input id="login" type="text" name="login" placeholder="Введите логин:" th:field="*{login}" required>
 
-        <label for="password"><b>Password:</b></label>
-        <input id="password" type="password" name="password" placeholder="Enter password:" th:field="*{password}" required>
+        <label for="password"><b>Пароль:</b></label>
+        <input id="password" type="password" name="password" placeholder="Введите пароль:" th:field="*{password}" required>
 
         <label for="email"><b>Email:</b></label>
-        <input id="email" type="text" name="email" placeholder="Enter email:" th:field="*{email}">
+        <input id="email" type="text" name="email" placeholder="Введите email:" th:field="*{email}">
 
-        <label for="number"><b>Number:</b></label>
-        <input id="number" type="text" name="number" placeholder="Enter number:" th:field="*{phone}">
+        <label for="number"><b>Номер телефона:</b></label>
+        <input id="number" type="text" name="number" placeholder="Введите номер:" th:field="*{phone}">
 
-        <button type="submit">Register</button>
+        <button class="btn-primary" type="submit">Зарегистрироваться</button>
     </div>
 </form>
 </body>

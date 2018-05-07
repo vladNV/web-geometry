@@ -1,9 +1,10 @@
-html, body{
-    overflow-y:hidden;
+html, body {
+    overflow-y: hidden;
 }
 
 .cont {
-    padding: 60px;
+    width: 99%;
+    padding: 8px;
     margin: 0;
 }
 

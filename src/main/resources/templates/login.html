@@ -11,20 +11,20 @@
 </head>
 <body>
 <div th:if="${param.error}">
-    Invalid username and password.
+    Неверно введенные данные.
 </div>
 <div th:if="${param.logout}">
-    You have been logged out.
+    Вы вышли из системы.
 </div>
 <form id="form-login" th:action="@{/login}" method="post">
     <div class="container">
-        <label for="username"><b>Login:</b></label>
-        <input id="username" type="text" name="username" placeholder="Enter login:" required>
+        <label for="username"><b>Логин:</b></label>
+        <input id="username" type="text" name="username" placeholder="Введите логин:" required>
 
-        <label for="password"><b>Password:</b></label>
-        <input id="password" type="password" name="password" placeholder="Enter password:" required>
+        <label for="password"><b>Пароль:</b></label>
+        <input id="password" type="password" name="password" placeholder="введите пароль:" required>
 
-        <button type="submit">Log in</button>
+        <button class="btn-primary" type="submit">Войти</button>
     </div>
 </form>
 </body>
