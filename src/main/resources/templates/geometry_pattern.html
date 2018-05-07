@@ -76,7 +76,8 @@
                 <button class="btn btn-danger" id="reset" onclick="resetAll()">
                     Очистить
                 </button>
-                <button class="btn btn-warning" onclick="insert()" data-toggle="modal" data-target="#exampleModal">
+                <button class="btn btn-warning" onclick="insert()"
+                        data-toggle="modal" data-target="#exampleModal">
                     Сохранить
                 </button>
                 <button class="btn btn-warning" onclick="loadData()">
@@ -94,39 +95,44 @@
         <div id="paint" class="col-10" th:utext="${figure != null ? figure.jsonValue : ''}"
              onclick="doSomething()">
         </div>
-        <!--<div id="trigonometry" class="col-10" style="display: none;">-->
-        <!--</div>-->
-        <!--<div id="graph" class="col-10" style="display: none;">-->
-            <!--<div class="col-2">-->
-                <!--<label for="func">f(x): </label><input id="func" class="form-control" required />-->
-                <!--<label for="from">from: </label><input id="from" class="form-control" required />-->
-                <!--<label for="to">to: </label><input id="to" class="form-control" required/>-->
-                <!--<hr>-->
-                <!--<button class="btn btn-success" onclick="drawFunc()">Draw</button>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div id="load" class="col-10" style="display: none;">-->
-            <!--<table class="table table-dark">-->
-                <!--<thead>-->
-                <!--<tr>-->
-                    <!--<th>ID</th>-->
-                    <!--<th>Title</th>-->
-                    <!--<th>Description</th>-->
-                    <!--<th>Created Date</th>-->
-                    <!--<th></th>-->
-                <!--</tr>-->
-                <!--</thead>-->
-                <!--<tbody>-->
-                <!--<tr th:each="f : ${figures}">-->
-                    <!--<td th:text="${f.id}"></td>-->
-                    <!--<td th:text="${f.title}"></td>-->
-                    <!--<td th:text="${f.description}"></td>-->
-                    <!--<td th:text="${f.createdDate}"></td>-->
-                    <!--<td><a th:href="@{/geometry_pattern/} + ${f.id}">Load</a></td>-->
-                <!--</tr>-->
-                <!--</tbody>-->
-            <!--</table>-->
-        <!--</div>-->
+        <div id="trigonometry" class="col-10" style="display: none;">
+        </div>
+        <div id="graph" class="col-10" style="display: none;overflow: scroll;">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label  for="func">f(x): </label><input id="func" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label  for="from">from: </label><input id="from" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label  for="to">to: </label><input id="to" class="form-control" required/>
+                </div>
+            </form>
+            <button class="btn btn-success" onclick="drawFunc()">Draw</button>
+        </div>
+        <div id="load" class="col-10" style="display: none;">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Заголовок</th>
+                    <th>Описание</th>
+                    <th>Дата создания</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="f : ${figures}">
+                    <td th:text="${f.id}"></td>
+                    <td th:text="${f.title}"></td>
+                    <td th:text="${f.description}"></td>
+                    <td th:text="${f.createdDate}"></td>
+                    <td><a th:href="@{/geometry_pattern/} + ${f.id}">Load</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <!-- Modal -->
@@ -159,16 +165,16 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
             </div>
         </div>
     </div>
 </div>
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/constructor/menu.js}"></script>
 <script th:src="@{/constructor/controller.js}"></script>
 <script th:src="@{/constructor/graph.js}"></script>
 <script th:src="@{/constructor/trigonometry.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/constructor/ploty.min.js}"></script>
 </body>
 </html>
