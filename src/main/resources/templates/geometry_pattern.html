@@ -19,9 +19,9 @@
         <!--<button id="polygon_accept" class="btn btn-success">Принять</button>-->
         <!--<button id="polygon_cancel" class="btn btn-danger">Отмена</button>-->
         <!--</div>-->
-        <span th:if="${saved}">
-            Данные сохранены
-        </span>
+        <span style="display: none;" th:if="${saved}"><script>
+            alert('Данные сохраненны!');
+        </script></span>
         <div class="col-2">
             <div class="btn-group-vertical" style="width: 100%;">
                 <button class="btn btn-primary" id="point" onclick="switchAction('point')">
